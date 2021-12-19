@@ -1,19 +1,32 @@
+
 print("Welcome To The Game, Type Your Guess In Between 1 To 9")
-number = str(4)
-chance = 5
-guess = "guess"
+import random
 
-for i in guess:
-    guess = (input("Enter Your Guess : "))
-    chance=chance-1   
-    if(guess > number):
-        print("Your Guess Is So High, Try A Number Lesser Than", guess)
-        
-    if(guess < number): 
-         print("Your Guess Is So Low, Try A Number Higher Than", guess)
-        
+class Game:
+    Number = random.randrange(1,10+1)
+    IsGuessed = False
+    nGuesses = 0
+    def numCheck(a):
+       if a==Game.Number:
+          Game.IsGuessed = True
+          print(f"You guessed It! in {Game.nGuesses}")
+       elif a>Game.Number:
+           print("please enter a Smaller number.")
+       elif a<Game.Number:
+           print("please enter a Greater number.")
+          
+          
+    def __init__(self):
+        i =0
+        while(not Game.IsGuessed):
+           if(i!=5):
+               Game.nGuesses+=1
+               userInput = int(input("Enter your guess: "))
+               Game.numCheck(userInput)
+               i+=1
+           else:
+               break
+        if i==5:
+            print("Max Attempt Reached!")
 
-    if (guess == number):
-        print("CONGRADRULATIONS, You Guessed The Number!!!")
-if  not chance<0 :  
-    print("You Lost!!!, The Number Is", number)
+Game()
